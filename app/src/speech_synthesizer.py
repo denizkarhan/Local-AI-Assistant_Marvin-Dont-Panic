@@ -25,7 +25,7 @@ class SpeechSynthesizer:
             output_numpy = np.int16(output_numpy / np.max(np.abs(output_numpy)) * 32767)
             audio_segment = AudioSegment(
                 output_numpy.tobytes(),
-                frame_rate=18000,
+                frame_rate=19000,
                 sample_width=2,
                 channels=1
             )
