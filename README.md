@@ -3,6 +3,10 @@ Your fully customizable native AI assistant, powered by Whisper, llama3.1, Phi-3
 
 ---
 
+<p align="center">
+  <img src="app/static/img/marvin.png">
+</p>
+
 ### Install the necessary dependencies to start the installation. Let's do this step by step through the terminal 🛠️
 ```bash
   git clone git@github.com:denizkarhan/Local-AI-Assistant_Marvin-Dont-Panic.git
@@ -17,6 +21,9 @@ Your fully customizable native AI assistant, powered by Whisper, llama3.1, Phi-3
   pip install -r requirements.txt
 ```
 
+<p align="right">
+  <img src="app/static/img/image.png" width=240px>
+</p>
 
 ### Download ollama (Linux & macOS) | To run and chat with phi3: 
 ```bash
@@ -47,6 +54,13 @@ Your fully customizable native AI assistant, powered by Whisper, llama3.1, Phi-3
 
 ‼️ You should have at least 8 GB of RAM available to run the 7B models, 16 GB to run the 13B models, and 32 GB to run the 33B models.
 
+<img src="app/static/img/dontpanic.png" width=180px>
+
+#### You can use it from 127.0.0.1:5000 after the voice identification models finish downloading in the background
+```bash
+  python app/app.py
+```
+
 ### REST API
 - Ollama has a REST API for running and managing models, generate a response
 
@@ -74,6 +88,8 @@ Your fully customizable native AI assistant, powered by Whisper, llama3.1, Phi-3
             response = requests.post(self.url, headers=headers, json=data)
 ```
 
+---
+
 ### Available Whisper models and languages
 Whisper is a general-purpose speech recognition model. It is trained on a large dataset of diverse audio and is also a multitasking model that can perform multilingual speech recognition, speech translation, and language identification.
 
@@ -84,3 +100,4 @@ Whisper is a general-purpose speech recognition model. It is trained on a large 
 | small    | 244 M      | `small.en`         | `small`            | ~2 GB         | ~6x            |
 | medium   | 769 M      | `medium.en`        | `medium`           | ~5 GB         | ~2x            |
 | large    | 1550 M     | N/A                | `large`            | ~10 GB        | 1x             |
+
