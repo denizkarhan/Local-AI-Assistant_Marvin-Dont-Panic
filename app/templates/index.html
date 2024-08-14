@@ -7,6 +7,386 @@
   <link href='https://fonts.googleapis.com/css?family=Oswald:300,400' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Mrs+Saint+Delafield' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="../static/css/style.css">
+
+  <style>
+    .btn {
+      border-radius: 50%;
+      transition: transform 0.5s cubic-bezier(1, 0, 0.5, -1) 0.25s, box-shadow 0.5s cubic-bezier(1, -5, 0.5, 5) 0.25s;
+      transform: scale(0.5);
+      animation: btn_noise 3s ease-in-out 1, btn_ring 1s ease-in-out 3s 1;
+      box-shadow: inset 0 0 0 20px white, 0 0 30px white;
+      left: 50%;
+      top: 35%;
+      margin: -12.5rem;
+      width: 25rem;
+      height: 25rem;
+      position: absolute;
+      cursor: pointer;
+    }
+    .btn::before, .btn::after {
+      opacity: 0;
+      content: "";
+      position: absolute;
+      width: 31rem;
+      height: 29rem;
+      margin: -2rem -3rem -2rem -3rem;
+      border-radius: 50%;
+      z-index: -10;
+    }
+    .btn::before {
+      box-shadow: 0 -15px 30px -15px rgba(255, 255, 255, 0.8), -25px 15px 50px -25px rgba(255, 255, 255, 0.2), 0 -25px 15px -20px rgba(255, 255, 255, 0.3);
+    }
+    .btn::after {
+      box-shadow: 0 -25px 20px -15px rgba(255, 255, 255, 0.2), 10px 25px 15px -30px white, -10px 30px 20px -30px rgba(255, 255, 255, 0.3);
+    }
+    
+    .btn-info {
+      border-radius: 50%;
+      transform: scale(0);
+      transition: all 0.6s ease-in-out;
+      background-image: repeating-radial-gradient(rgba(255, 255, 255, 0.2) 0, black 2px, black 50px);
+      overflow: hidden;
+      opacity: 0;
+      background-size: 12.5rem 12.5rem;
+      position: absolute;
+      width: inherit;
+      height: inherit;
+    }
+    
+    @keyframes grow-round {
+      0% {
+        transform: scale(1);
+        border-radius: 50%;
+        opacity: 0.8;
+      }
+      50% {
+        transform: scale(1.2);
+        opacity: 0.9;
+      }
+      100% {
+        transform: scale(1);
+        border-radius: 50%;
+        opacity: 1;
+      }
+    }
+    
+    .btn-info.btn_active {
+      opacity: 1;
+      transform: scale(1);
+      animation: grow-round 2s ease-in-out infinite;
+    }
+    
+    .btn-info.btn_deactive {
+      opacity: 0;
+      transform: scale(0);
+    }
+    
+    .btn-h1, .btn-button, .btn-button::after, .btn-button:active::after {
+      font-family: "Oswald", sans-serif;
+      font-weight: 400;
+      font-style: italic;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    
+    .btn-h1 {
+      text-shadow: 0 0 0 white, 0 0 1px white, 0 1px 2px rgb(255, 255, 255);
+      position: absolute;
+      clip: rect(0, 20rem, 20rem, 0);
+      font-size: 2em;
+      padding-top: 3.5rem;
+      left: 23%;
+      color: transparent;
+    }
+    
+    .btn-h1 span {
+      font-size: 1.1em;
+    }
+    
+    .btn-h1_thin {
+      font-size: 2em;
+      font-family: "Oswald", sans-serif;
+      font-weight: 300;
+      font-style: italic;
+    }
+    
+    .btn-line {
+      transition: all 1s ease-in-out;
+      margin: 10.5rem 3rem 2.5rem;
+      border-top: 1px solid white;
+      width: 0;
+    }
+    
+    .btn-copy {
+      font-size: 1rem;
+      font-family: "Oswald", sans-serif;
+      font-weight: 300;
+      color: white;
+      text-align: center;
+    }
+    
+    .btn-author {
+      transition: all 1s ease-in-out;
+      text-shadow: 0 0 1px white;
+      font-size: 1.8rem;
+      font-family: 'Mrs Saint Delafield', cursive;
+      opacity: 0;
+      color: white;
+      text-align: center;
+    }
+    
+    .btn-copy {
+      padding: 0 5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .btn-button {
+      transition: all 0.1s ease-in-out;
+      font-style: normal;
+      font-size: 0.8rem;
+      color: white;
+      border: 1px solid white;
+      width: 5rem;
+      padding: 0.5rem;
+      margin: 0 auto;
+      display: block;
+      position: relative;
+    }
+    .btn-button::before {
+      transition: all 0.1s ease-in-out;
+      content: "";
+      opacity: 0;
+      position: absolute;
+      width: 5rem;
+      padding: 0.5rem;
+      top: 0%;
+      left: 0%;
+      height: 56%;
+    }
+    .btn-button::after {
+      text-shadow: 0 0 1px white, 0 1px 2px rgba(255, 255, 255, 0.5);
+      transition: all 0.2s ease-in-out;
+      font-size: 1.5rem;
+      content: "GO!";
+      color: rgb(0, 0, 0);
+      position: absolute;
+      opacity: 0;
+      bottom: 10%;
+      left: 35%;
+    }
+    
+    .btn-button:hover {
+      width: 7rem;
+    }
+    .btn-button:hover::before {
+      opacity: 1;
+      animation: btn_stripe 0.5s infinite linear;
+      background: linear-gradient(45deg, #ffffff 25%, #000000 25%, #000000 50%, #ffffff 50%, #ffffff 75%, #000000 75%, #000000);
+      background-size: 30px 30px;
+      width: 7rem;
+    }
+    .btn-button:hover::after {
+      opacity: 1;
+    }
+    
+    .btn-button:active {
+      background-color: white;
+    }
+    .btn-button:active::before {
+      opacity: 0;
+    }
+    .btn-button:active::after {
+      text-shadow: 0 0 1px white, 0 1px 2px rgba(255, 255, 255, 0.5);
+      transition: all 0.1s ease-in-out;
+      font-size: 1.5rem;
+      content: "SWEET";
+      color: black;
+      position: absolute;
+      top: 0%;
+      left: 20%;
+    }
+    
+    @keyframes btn_stripe {
+      0% {
+        background-position: 0 0;
+      }
+      100% {
+        background-position: 100% 0;
+      }
+    }
+    .btn:hover {
+      box-shadow: inset 0 0 0 0 rgba(255, 255, 255, 0), 0 0 30px white;
+      transform: scale(1);
+      transition-delay: 1.5s;
+    }
+    .btn:hover::before {
+      animation: btn_spin 0.5s cubic-bezier(0.6, 0.2, 0, 0.8) infinite alternate, btn_fade 1.5s cubic-bezier(0.4, 0.2, 0.1, 0.7);
+    }
+    .btn:hover::after {
+      animation: btn_spin 1s cubic-bezier(0.4, 0.2, 0.1, 0.7) 0.25s infinite alternate, btn_fade 1.5s cubic-bezier(0.4, 0.2, 0.1, 0.7);
+    }
+    .btn:hover .btn-info {
+      transform: scale(1);
+      transition-delay: 1.75s;
+      animation: btn-bg_size 4s cubic-bezier(0.2, 0, 1, 0.5) infinite alternate, btn-bg_positon 3s ease-in-out infinite alternate;
+      opacity: 1;
+    }
+    .btn:hover .btn-h1 {
+      animation: btn_noise2 4s 1 linear alternate-reverse;
+      left: 18%;
+    }
+    .btn:hover .btn-author {
+      transition-delay: 2.25s;
+      opacity: 1;
+    }
+    .btn:hover .btn-line {
+      transition-delay: 1.75s;
+      width: 19rem;
+      margin: 10.5rem 3rem 1rem;
+    }
+    
+    @keyframes btn_spin {
+      100% {
+        transform: rotate(1000) scale(1);
+      }
+    }
+    @keyframes btn_fade {
+      0% {
+        opacity: 1;
+      }
+      40% {
+        opacity: .2;
+      }
+      80% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+    @keyframes btn-bg_size {
+      100% {
+        background-size: 2.5rem 2.5rem;
+      }
+    }
+    @keyframes btn-bg_positon {
+      0% {
+        background-position: left top;
+      }
+      25% {
+        background-position: right top;
+      }
+      50% {
+        background-position: right bottom;
+      }
+      75% {
+        background-position: left bottom;
+      }
+    }
+    .btn_ghost {
+      animation: btn_ghost 0.3s ease-in-out 2 alternate;
+      transition: all 0.3s ease-in-out;
+      transition-delay: 0.8s;
+      opacity: 0;
+    }
+    
+    .btn-h1 span {
+      animation-delay: 0.05s;
+    }
+    
+    .btn-h1 span > span {
+      animation-delay: 0.1s;
+    }
+    
+    .btn-h1 span > span > span {
+      animation-delay: 0.15s;
+    }
+    
+    .btn-h1 span > span > span > span {
+      animation-delay: 0.2s;
+    }
+    
+    .btn-h1 span > span > span > span > span {
+      animation-delay: 0.25s;
+    }
+    
+    .btn-h1 span > span > span > span > span > span {
+      animation-delay: 0.3s;
+    }
+    
+    .btn-h1 span > span > span > span > span > span > span {
+      animation-delay: 0.35s;
+    }
+    
+    .btn-h1 span > span > span > span > span > span > span > span {
+      animation-delay: 0.4s;
+    }
+    
+    @keyframes btn_ghost {
+      100% {
+        text-shadow: 5rem 0 20rem black;
+      }
+    }
+    .btn_gone {
+      transition: all 0.2s ease-in-out;
+      transition-delay: 0s !important;
+      transform: translateY(1rem) rotateX(90deg);
+      opacity: 0 !important;
+    }
+    
+    .btn_white {
+      transition-delay: 0s !important;
+      background: white !important;
+    }
+    
+    .btn_shrink {
+      transition: all 0.4s ease-in-out;
+      transition-delay: 0.4s !important;
+      background: white !important;
+      transform: scale(0) !important;
+      opacity: 0 !important;
+    }
+    
+    .scene-spinner {
+      margin: auto;
+      height: 100%;
+      display: none;
+    }
+    
+    .spn-wrap {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+    }
+    
+    .spn-spinner {
+      position: relative;
+    }
+    
+    .spn-a {
+      display: block;
+      position: absolute;
+      opacity: 0;
+    }
+    .spn-a .spn-b {
+      display: block;
+      width: 0.25rem;
+      height: 0.25rem;
+      background: white;
+      border-radius: 50%;
+      box-shadow: 0 0 1rem white;
+      animation: spn_spin 1s infinite ease-in-out;
+    }
+    
+    /* Başlangıç butonunun bulunduğu alan */
+    .scene-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }    
+  </style>
 </head>
 <body>
   
