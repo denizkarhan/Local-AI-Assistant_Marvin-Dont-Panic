@@ -38,7 +38,7 @@ Your fully customizable native AI assistant, powered by Whisper, llama3.1, Phi-3
   ollama run phi3
 ```
 
-#### You can use it from 127.0.0.1:5000 after the voice identification models finish downloading in the background
+#### You can use it from 127.0.0.1:5001 after the voice identification models finish downloading in the background
 ```bash
   python app/app.py
 ```
