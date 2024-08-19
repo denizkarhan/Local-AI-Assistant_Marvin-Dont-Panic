@@ -18,6 +18,13 @@ Your fully customizable native AI assistant, powered by Whisper, llama3.1, Phi-3
   pyenv install 3.11.7
   pyenv virtualenv 3.11.7 dont_panic
   pyenv activate dont_panic
+```
+
+### it may take some time to load the necessary libraries for the voice assistant models :)
+```bash
+  pip install pip wheel setuptools -U
+  python -m unidic download
+  pip install git+https://github.com/openai/whisper.git
   pip install -r requirements.txt
 ```
 
@@ -29,6 +36,11 @@ Your fully customizable native AI assistant, powered by Whisper, llama3.1, Phi-3
 ```bash
   curl -fsSL https://ollama.com/install.sh | sh
   ollama run phi3
+```
+
+#### You can use it from 127.0.0.1:5000 after the voice identification models finish downloading in the background
+```bash
+  python app/app.py
 ```
 
 ### Here are some example models that can be downloaded 🎊
@@ -55,11 +67,6 @@ Your fully customizable native AI assistant, powered by Whisper, llama3.1, Phi-3
 ‼️ You should have at least 8 GB of RAM available to run the 7B models, 16 GB to run the 13B models, and 32 GB to run the 33B models.
 
 <img src="app/static/img/dontpanic.png" width=180px>
-
-#### You can use it from 127.0.0.1:5000 after the voice identification models finish downloading in the background
-```bash
-  python app/app.py
-```
 
 ### REST API
 - Ollama has a REST API for running and managing models, generate a response
