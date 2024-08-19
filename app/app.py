@@ -1,14 +1,14 @@
 import logging
 from flask import Flask, render_template, jsonify, request
-from src import chat_model, speech_synthesizer, voice_assistant
+from src import chat_model, speech_synthesizer_melotts, voice_assistant
 
 app = Flask(__name__)
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-voice_assistant = voice_assistant.VoiceAssistant()
+voice_assistant_stt = voice_assistant.VoiceAssistant()
 model = chat_model.ChatModel()
-synthesizer = speech_synthesizer.SpeechSynthesizer()
+synthesizer = speech_synthesizer_melotts.SpeechSynthesizer()
 
 @app.route('/')
 def index():
@@ -16,7 +16,7 @@ def index():
 
 @app.route('/record', methods=['POST'])
 def record():
-    question = voice_assistant.get_question()
+    question = voice_assistant_stt.get_question()
     return jsonify({'text': question if question else 'I did not understand what you said.'})
 
 @app.route('/answer', methods=['POST'])
@@ -46,4 +46,4 @@ def speaker():
     return jsonify({'text': 'Invalid question provided.'}), 400
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    app.run(debug=True, port=5001)
