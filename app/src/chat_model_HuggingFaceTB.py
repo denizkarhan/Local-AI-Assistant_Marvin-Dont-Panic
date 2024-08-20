@@ -19,8 +19,9 @@ class APIError(Exception):
         return base_message
 
 class ChatModel:
-    def __init__(self, model_name="HuggingFaceTB/SmolLM-360M-Instruct"):
+    def __init__(self, model_name="HuggingFaceTB/SmolLM-360M-Instruct", base_prompt="I'd like you to answer my questions briefly!\n"):
         self.device = "cpu"
+        self.base_prompt = base_prompt
         self.model_name = model_name
         self.tokenizer = AutoTokenizer.from_pretrained(self.model_name)
         self.model = AutoModelForCausalLM.from_pretrained(self.model_name).to(self.device)
@@ -31,7 +32,7 @@ class ChatModel:
             data = [
                         {
                             "role": "user",
-                            "content": "I'd like you to answer my questions briefly!\n" + prompt
+                            "content": self.base_prompt + prompt
                         }
                     ]
             

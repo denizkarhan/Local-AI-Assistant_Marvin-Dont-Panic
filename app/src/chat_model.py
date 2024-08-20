@@ -18,10 +18,10 @@ class APIError(Exception):
         return base_message
 
 class ChatModel:
-    def __init__(self, url="http://localhost:11434/api/chat", model_name="phi3"):
+    def __init__(self, url="http://localhost:11434/api/chat", model_name="phi3", base_prompt="I'd like you to answer my questions briefly!\n"):
         self.url = url
         self.model_name = model_name
-        self.base_message = "I'd like you to answer my questions briefly!\n"
+        self.base_prompt = base_prompt
 
     def send_prompt(self, prompt):
         logging.info(f"Sending prompt to chat model: {prompt}")
@@ -31,7 +31,7 @@ class ChatModel:
                 "messages": [
                     {
                         "role": "user",
-                        "content": self.base_message + prompt 
+                        "content": self.base_prompt + prompt 
                     }
                 ],
                 "stream": False

@@ -15,6 +15,18 @@ synthesizer = speech_synthesizer_melotts.SpeechSynthesizer()
 def index():
     return render_template('index.html')
 
+@app.route('/api/reset-prompt', methods=['POST'])
+def reset_prompt():
+    llm_model.base_prompt = "I'd like you to answer my questions briefly!\n"
+    print("prompt reset complete!")
+    return jsonify({"status": "success", "data": "success"})
+
+@app.route('/api/submit-prompt', methods=['POST'])
+def submit_prompt():
+    data = request.json.get('prompt')
+    llm_model.base_prompt += data + "\n"
+    return jsonify({"status": "success", "data": data})
+
 @app.route('/api/submit-data', methods=['POST'])
 def submit_data():
     data = request.json
