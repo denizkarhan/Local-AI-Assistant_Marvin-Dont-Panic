@@ -54,39 +54,33 @@ $(document).ready(function() {
         });
       });
     });
-  });
+});
 
-  const selected_button = document.querySelectorAll('.sidebar button');
+const selected_button = document.querySelectorAll('.sidebar button');
   selected_button.forEach(button => {
-    button.addEventListener('click', function() {
-      selected_button.forEach(btn => btn.classList.remove('active'));
-      this.classList.add('active');
-
-      const buttonText = this.innerText;
-
-      fetch('/api/select-model', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ button_text: buttonText })
-      })
-      .then(response => response.json())
-      .then(data => console.log(data))
-      .catch(error => console.error('Error:', error));
-    });
+  button.addEventListener('click', function() {
+    selected_button.forEach(btn => btn.classList.remove('active'));
+    this.classList.add('active');
+    const buttonText = this.innerText;
+    fetch('/api/select-model', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ button_text: buttonText })
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error('Error:', error));
   });
-  
-  
-  
-  const buttons = document.querySelectorAll('.sidebar2 button');
+});
+
+const buttons = document.querySelectorAll('.sidebar2 button');
   buttons.forEach(button => {
     button.addEventListener('click', function() {
       buttons.forEach(btn => btn.classList.remove('active'));
       this.classList.add('active');
-
       const buttonText = this.innerText;
-
       fetch('/api/select-lang', {
         method: 'POST',
         headers: {
@@ -98,31 +92,86 @@ $(document).ready(function() {
       .then(data => console.log(data))
       .catch(error => console.error('Error:', error));
     });
-  });
+});
 
-  document.getElementById('submitBtn').addEventListener('click', function() {
-    const fs = parseFloat(document.getElementById('fs').value) || 44100;
-    const chunk_size = parseFloat(document.getElementById('chunk_size').value) || 1024;
-    const silence_threshold = parseFloat(document.getElementById('silence_threshold').value) || 0.0001;
-    const silence_duration = parseFloat(document.getElementById('silence_duration').value) || 2.5;
-    const model_name = document.getElementById('model_name').value;
+document.getElementById('submitBtn').addEventListener('click', function() {
+  const fs = parseFloat(document.getElementById('fs').value) || 44100;
+  const chunk_size = parseFloat(document.getElementById('chunk_size').value) || 1024;
+  const silence_threshold = parseFloat(document.getElementById('silence_threshold').value) || 0.0001;
+  const silence_duration = parseFloat(document.getElementById('silence_duration').value) || 2.5;
+  const model_name = document.getElementById('model_name').value;
+  const data = {
+    fs: fs,
+    chunk_size: chunk_size,
+    silence_threshold: silence_threshold,
+    silence_duration: silence_duration,
+    model_name: model_name
+  };
 
-    const data = {
-      fs: fs,
-      chunk_size: chunk_size,
-      silence_threshold: silence_threshold,
-      silence_duration: silence_duration,
-      model_name: model_name
-    };
+  fetch('/api/submit-data', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error('Error:', error));
+});
+
+document.getElementById('submitBtn2').addEventListener('click', function() {
+  const prompt = document.getElementById('prompt').value;
+
+  const data = {
+    prompt: prompt
+  };
+
+  fetch('/api/submit-prompt', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error('Error:', error));
+});
+
+document.getElementById('submitBtn2').addEventListener('click', function() {
+  const prompt = document.getElementById('prompt').value;
+
+  const data = {
+    prompt: prompt
+  };
+
+fetch('/api/submit-prompt', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error('Error:', error));
+});
+
+document.getElementById('submitBtn3').addEventListener('click', function() {
+  const prompt = document.getElementById('prompt').value;
+  const data = {
+    prompt: prompt
+  };
   
-    fetch('/api/submit-data', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      })
-      .then(response => response.json())
-      .then(data => console.log(data))
-      .catch(error => console.error('Error:', error));
-      });
+  fetch('/api/reset-prompt', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error('Error:', error));
+});
