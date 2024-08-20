@@ -6,7 +6,7 @@ import sounddevice as sd
 import scipy.io.wavfile
 
 class VoiceAssistant:
-    def __init__(self, fs=44100, chunk_size=1024, silence_threshold=0.0001, silence_duration=2, model_name="small"):
+    def __init__(self, fs=44100, chunk_size=1024, silence_threshold=0.0001, silence_duration=1.5, model_name="small"):
         self.fs = fs
         self.chunk_size = chunk_size
         self.silence_threshold = silence_threshold
