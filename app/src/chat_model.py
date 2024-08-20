@@ -21,6 +21,7 @@ class ChatModel:
     def __init__(self, url="http://localhost:11434/api/chat", model_name="phi3"):
         self.url = url
         self.model_name = model_name
+        self.base_message = "I'd like you to answer my questions briefly!\n"
 
     def send_prompt(self, prompt):
         logging.info(f"Sending prompt to chat model: {prompt}")
@@ -30,7 +31,7 @@ class ChatModel:
                 "messages": [
                     {
                         "role": "user",
-                        "content": "I'd like you to answer my questions briefly!\n" + prompt 
+                        "content": self.base_message + prompt 
                     }
                 ],
                 "stream": False

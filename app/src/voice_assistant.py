@@ -6,13 +6,22 @@ import sounddevice as sd
 import scipy.io.wavfile
 
 class VoiceAssistant:
-    def __init__(self, fs=44100, chunk_size=1024, silence_threshold=0.0001, silence_duration=1.5, model_name="small"):
+    def __init__(self, fs=44100, chunk_size=1024, silence_threshold=0.0001, silence_duration=2.5, model_name="small"):
         self.fs = fs
         self.chunk_size = chunk_size
         self.silence_threshold = silence_threshold
         self.silence_duration = silence_duration
         self.model_name = model_name
         self.model = whisper.load_model(self.model_name)
+
+    def model_reload(self, data):
+        self.fs = data.get('fs', self.fs)
+        self.chunk_size = data.get('chunk_size', self.chunk_size)
+        self.silence_threshold = data.get('silence_threshold', self.silence_threshold)
+        self.silence_duration = data.get('silence_duration', self.silence_duration)    
+        if self.model_name != data.get('model_name', self.model_name):
+            self.model_name = data.get('model_name', self.model_name)
+            self.model = whisper.load_model(self.model_name) 
 
     def record_audio(self, output_filename='audio.mp3'):
         recording = []
