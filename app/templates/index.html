@@ -7,191 +7,232 @@
   <link href='https://fonts.googleapis.com/css?family=Oswald:300,400' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Mrs+Saint+Delafield' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="../static/css/style.css">
+  <style>
+    /* Sol tarafa butonlar için stil */
+    h3 {
+      margin-bottom: 20px;
+      font-size: 18px;
+      color: #333;
+    }
 
-  <style>    
-    @keyframes btn_stripe {
-      0% {
-        background-position: 0 0;
-      }
-      100% {
-        background-position: 100% 0;
-      }
+    input[type="number"], select {
+      width: 100px;
+      padding: 10px;
+      margin-bottom: 30px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+      box-sizing: border-box;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
-    .btn:hover {
-      box-shadow: inset 0 0 0 0 rgba(255, 255, 255, 0), 0 0 30px white;
-      transform: scale(1);
-      transition-delay: 1.5s;
+
+    input[type="number"]:focus, select:focus {
+      border-color: #4CAF50;
+      box-shadow: 0 0 8px rgba(76, 175, 80, 0.2);
+      outline: none;
     }
-    .btn:hover::before {
-      animation: btn_spin 0.5s cubic-bezier(0.6, 0.2, 0, 0.8) infinite alternate, btn_fade 1.5s cubic-bezier(0.4, 0.2, 0.1, 0.7);
+
+    select option {
+      padding: 10px;
     }
-    .btn:hover::after {
-      animation: btn_spin 1s cubic-bezier(0.4, 0.2, 0.1, 0.7) 0.25s infinite alternate, btn_fade 1.5s cubic-bezier(0.4, 0.2, 0.1, 0.7);
+
+    select:hover {
+      background-color: #acabaa;
     }
-    .btn:hover .btn-info {
-      transform: scale(1);
-      transition-delay: 1.75s;
-      animation: btn-bg_size 4s cubic-bezier(0.2, 0, 1, 0.5) infinite alternate, btn-bg_positon 3s ease-in-out infinite alternate;
-      opacity: 1;
+
+    button#submitBtn {
+      font-size: 20px;
+      padding: 10px;
+      height: 60px;
+      width: 100px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.5s ease;
     }
-    .btn:hover .btn-h1 {
-      animation: btn_noise2 4s 1 linear alternate-reverse;
-      left: 18%;
-    }
-    .btn:hover .btn-author {
-      transition-delay: 2.25s;
-      opacity: 1;
-    }
-    .btn:hover .btn-line {
-      transition-delay: 1.75s;
-      width: 19rem;
-      margin: 10.5rem 3rem 1rem;
-    }
-    
-    @keyframes btn_spin {
-      100% {
-        transform: rotate(1000) scale(1);
-      }
-    }
-    @keyframes btn_fade {
-      0% {
-        opacity: 1;
-      }
-      40% {
-        opacity: .2;
-      }
-      80% {
-        opacity: 1;
-      }
-      100% {
-        opacity: 0;
-      }
-    }
-    @keyframes btn-bg_size {
-      100% {
-        background-size: 2.5rem 2.5rem;
-      }
-    }
-    @keyframes btn-bg_positon {
-      0% {
-        background-position: left top;
-      }
-      25% {
-        background-position: right top;
-      }
-      50% {
-        background-position: right bottom;
-      }
-      75% {
-        background-position: left bottom;
-      }
-    }
-    .btn_ghost {
-      animation: btn_ghost 0.3s ease-in-out 2 alternate;
-      transition: all 0.3s ease-in-out;
-      transition-delay: 0.8s;
-      opacity: 0;
-    }
-    
-    .btn-h1 span {
-      animation-delay: 0.05s;
-    }
-    
-    .btn-h1 span > span {
-      animation-delay: 0.1s;
-    }
-    
-    .btn-h1 span > span > span {
-      animation-delay: 0.15s;
-    }
-    
-    .btn-h1 span > span > span > span {
-      animation-delay: 0.2s;
-    }
-    
-    .btn-h1 span > span > span > span > span {
-      animation-delay: 0.25s;
-    }
-    
-    .btn-h1 span > span > span > span > span > span {
-      animation-delay: 0.3s;
-    }
-    
-    .btn-h1 span > span > span > span > span > span > span {
-      animation-delay: 0.35s;
-    }
-    
-    .btn-h1 span > span > span > span > span > span > span > span {
-      animation-delay: 0.4s;
-    }
-    
-    @keyframes btn_ghost {
-      100% {
-        text-shadow: 5rem 0 20rem black;
-      }
-    }
-    .btn_gone {
-      transition: all 0.2s ease-in-out;
-      transition-delay: 0s !important;
-      transform: translateY(1rem) rotateX(90deg);
-      opacity: 0 !important;
-    }
-    
-    .btn_white {
-      transition-delay: 0s !important;
-      background: white !important;
-    }
-    
-    .btn_shrink {
-      transition: all 0.4s ease-in-out;
-      transition-delay: 0.4s !important;
-      background: white !important;
-      transform: scale(0) !important;
-      opacity: 0 !important;
-    }
-    
-    .scene-spinner {
-      margin: auto;
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
       height: 100%;
-      display: none;
-    }
-    
-    .spn-wrap {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-    }
-    
-    .spn-spinner {
-      position: relative;
-    }
-    
-    .spn-a {
-      display: block;
-      position: absolute;
-      opacity: 0;
-    }
-    .spn-a .spn-b {
-      display: block;
-      width: 0.25rem;
-      height: 0.25rem;
-      background: white;
-      border-radius: 50%;
-      box-shadow: 0 0 1rem white;
-      animation: spn_spin 1s infinite ease-in-out;
-    }
-    
-    /* Başlangıç butonunun bulunduğu alan */
-    .scene-button {
+      width: 15%;
+      background-color: #333;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
-      height: 100%;
-    }    
+      padding-top: 20px;
+      border-right: 3px solid #222;
+      border-bottom: 3px solid #222;
+      border-radius: 0 15px 15px 0;
+    }
+    
+    .sidebar button {
+      font-size: 16px;
+      margin: 10px 0;
+      padding: 10px;
+      height: 60px;
+      width: 150px;
+      background-color: #555;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.5s ease;
+    }
+
+    .sidebar button:hover {
+      background-color: #777;
+      transform: scale(1.1) translateY(-5px);
+    }
+
+    .sidebar button.active {
+      background-color: #4CAF50;
+    }
+
+
+
+    .sidebar2 {
+      position: fixed;
+      top: 50%;
+      right: 0;
+      height: 50%;
+      width: 16%;
+      background-color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 20px;
+      border-radius: 0 0 0 15px;
+      border-left: 3px solid #555;
+      border-bottom: 3px solid #555;
+    }
+    
+    .sidebar2 button {
+      font-size: 16px;
+      margin: 10px 0;
+      padding: 10px;
+      height: 60px;
+      width: 120px;
+      background-color: #555;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.5s ease;
+    }
+
+    .sidebar2 button:hover {
+      background-color: #777;
+      transform: scale(1.1) translateY(-5px);
+    }
+
+    .sidebar2 button.active {
+      background-color: #4CAF50;
+    }
+
+
+
+
+
+    .form-container {
+      position: fixed;
+      top: 0%;
+      right: 0;
+      height: 50%;
+      width: 16%;
+      align-items: center;
+      background-color: #f4f4f4;
+      display: flex;
+      border-radius: 15px 0 0 0;
+      border-left: 3px solid #555;
+      border-bottom: 3px solid #000;
+      flex-direction: column;
+      padding: 20px;
+    }
+
+    .form-container input[type="number"],
+    .form-container input[type="text"] {
+      margin-bottom: 15px;
+      padding: 10px;
+      width: 220px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .form-container button {
+      padding: 10px;
+      height: 75px;
+      width: 150px;
+      background-color: #222;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .form-container button:hover {
+      background-color: #333;
+      transform: scale(1.05) translateY(-5px);
+    }
+    label {
+      background-color: #1f1f1f;
+      font-size: 20px;
+      width: 150px;
+      border-radius: 5px;
+      margin-bottom: 15px;
+    }
   </style>
 </head>
 <body>
+
+  <div class="form-container">
+
+    <label>Speech Understanding</label>
+
+    <input type="number" id="fs" placeholder="fs: 44100" min="8000" max="192000" step="100">
+    <input type="number" id="chunk_size" placeholder="chunk_size: 1024" min="256" max="4096" step="256">
+    <input type="number" id="silence_threshold" placeholder="silence_threshold: 0.0001" min="0.0001" max="1" step="0.0001">
+    <input type="number" id="silence_duration" placeholder="silence_duration: 2.5" min="0.1" max="10" step="0.1">
   
+    <select id="model_name">
+      <option value="tiny">Tiny</option>
+      <option value="base">Base</option>
+      <option value="small" selected>Small</option>
+      <option value="medium">Medium</option>
+      <option value="large">Large</option>
+    </select>
+
+    <button id="submitBtn">Update</button>
+
+  </div>
+
+  <div class="sidebar">
+    <label>Question Answering</label>
+    <button>Llama 3.1</button>
+    <button>Phi 3 Mini</button>
+    <button>Gemma 2</button>
+    <button>Mistral</button>
+    <button>Neural Chat</button>
+    <button>Code Llama</button>
+    <button>HuggingFaceTB</button>
+  </div>
+
+  <div class="sidebar2">
+    <label>Speech Synthesizer</label>
+    <button>EN-Default</button>
+    <button>EN-US</button>
+    <button>EN-BR</button>
+    <button>EN_INDIA</button>
+    <button>EN-AU</button>
+  </div>
+
   <div class='scene-button'>
     <div class='btn'>
       <div class='btn-info'>
@@ -229,10 +270,83 @@
     <div id="app">Ask me something</div>
   </div>
 
-  <!-- Bağlantı -->
   <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
   <script src="../static/js/app.js"></script>
+  
+  <script>
+    const selected_button = document.querySelectorAll('.sidebar button');
+    selected_button.forEach(button => {
+      button.addEventListener('click', function() {
+        selected_button.forEach(btn => btn.classList.remove('active'));
+        this.classList.add('active');
+
+        const buttonText = this.innerText;
+
+        fetch('/api/select-model', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ button_text: buttonText })
+        })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error('Error:', error));
+      });
+    });
+    
+    
+    
+    const buttons = document.querySelectorAll('.sidebar2 button');
+    buttons.forEach(button => {
+      button.addEventListener('click', function() {
+        buttons.forEach(btn => btn.classList.remove('active'));
+        this.classList.add('active');
+
+        const buttonText = this.innerText;
+
+        fetch('/api/select-lang', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ button_text: buttonText })
+        })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error('Error:', error));
+      });
+    });
+
+    document.getElementById('submitBtn').addEventListener('click', function() {
+      const fs = parseFloat(document.getElementById('fs').value) || 44100;
+      const chunk_size = parseFloat(document.getElementById('chunk_size').value) || 1024;
+      const silence_threshold = parseFloat(document.getElementById('silence_threshold').value) || 0.0001;
+      const silence_duration = parseFloat(document.getElementById('silence_duration').value) || 2.5;
+      const model_name = document.getElementById('model_name').value;
+
+      const data = {
+        fs: fs,
+        chunk_size: chunk_size,
+        silence_threshold: silence_threshold,
+        silence_duration: silence_duration,
+        model_name: model_name
+      };
+    
+      fetch('/api/submit-data', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error('Error:', error));
+        });
+
+  </script>
 
 </body>
 </html>
