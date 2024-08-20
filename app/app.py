@@ -1,13 +1,13 @@
 import logging
 from flask import Flask, render_template, jsonify, request
-from src import chat_model, speech_synthesizer_melotts, voice_assistant
+from src import chat_model_HuggingFaceTB, speech_synthesizer_melotts, voice_assistant
 
 app = Flask(__name__)
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 voice_assistant_stt = voice_assistant.VoiceAssistant()
-model = chat_model.ChatModel()
+chat_model = chat_model_HuggingFaceTB.ChatModel()
 synthesizer = speech_synthesizer_melotts.SpeechSynthesizer()
 
 @app.route('/')
@@ -26,7 +26,7 @@ def answer():
 
     if question and question != 'I did not understand what you said.':
         try:
-            response = model.send_prompt(question)
+            response = chat_model.send_prompt(question)
             synthesizer.response = response
         except chat_model.APIError as e:
             logging.error(f"Error during chat model interaction: {e}")
