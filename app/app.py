@@ -48,7 +48,7 @@ def select_model():
     print(f"Clicked button text: {modelNames[select_model]}")
     if select_model != "HuggingFaceTB":
         ollamaModel = modelNames[select_model]
-        os.system("ollama run " + ollamaModel)
+        # os.system("ollama run " + ollamaModel)
         llm_model = chat_model.ChatModel(model_name=ollamaModel)
 
     return jsonify({"status": "success", "button_text": select_model})
@@ -69,6 +69,7 @@ def record():
 @app.route('/answer', methods=['POST'])
 def answer():
     data = request.json
+    
     question = data.get('question', '')
 
     if question and question != 'I did not understand what you said.':

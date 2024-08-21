@@ -12,10 +12,12 @@ $(document).ready(function() {
           elem.addClass('active');
           elem.css('background', '#ff6b6b');
         }
-  
+
+        var appInput = document.getElementById('app');
+        
         $.post('/record', function(data) {
           let question = data.text;
-          $("#app").text(question);
+          appInput.value = question;
           elem.removeClass('active');
   
           $(".btn-info").addClass("btn_active");
@@ -26,7 +28,7 @@ $(document).ready(function() {
             contentType: 'application/json',
             data: JSON.stringify({ question: question }),
             success: function(response) {
-              $("#app").text(response.text);
+              appInput.value = response.text;
               $.post('/speaker', function(data) {});
               elem.removeClass('active');
               $(".btn-info").removeClass("btn_active");
@@ -127,25 +129,6 @@ document.getElementById('submitBtn2').addEventListener('click', function() {
     prompt: prompt
   };
 
-  fetch('/api/submit-prompt', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    })
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(error => console.error('Error:', error));
-});
-
-document.getElementById('submitBtn2').addEventListener('click', function() {
-  const prompt = document.getElementById('prompt').value;
-
-  const data = {
-    prompt: prompt
-  };
-
 fetch('/api/submit-prompt', {
     method: 'POST',
     headers: {
@@ -174,4 +157,24 @@ document.getElementById('submitBtn3').addEventListener('click', function() {
   .then(response => response.json())
   .then(data => console.log(data))
   .catch(error => console.error('Error:', error));
+});
+
+var appInput = document.getElementById('app');
+
+appInput.addEventListener('keydown', function(event) {
+  if (event.key === 'Enter') {
+    question = appInput.value;
+    appInput.value = "I answer your question right away ⚡️";
+
+    $.ajax({
+      url: '/answer',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify({ question: question }),
+      success: function(response) {
+        appInput.value = response.text;
+        $.post('/speaker', function(data) {});
+      }
+    });
+  }
 });
