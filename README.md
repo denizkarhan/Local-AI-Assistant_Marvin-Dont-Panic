@@ -3,13 +3,15 @@ Your fully customizable native AI assistant, powered by Whisper, llama3.1, Phi-3
 
 ---
 
-<p align="center">
-  <img height=300px src="app/static/img/version2/start.png">
-  <img height=300px src="app/static/img/version2/open voice.png">
-  <img height=300px src="app/static/img/version2/select model_sound_base-prompt.png">
-  <img height=300px src="app/static/img/version2/ask question.png">
-  <img height=300px src="app/static/img/version2/listen response.png">
-</p>
+<details>
+  <summary>Version 2 🎉</summary>
+  <img src="app/static/img/version2/start.png">
+  <img src="app/static/img/version2/open voice.png">
+  <img src="app/static/img/version2/select model_sound_base-prompt.png">
+  <img src="app/static/img/version2/ask question.png">
+  <img src="app/static/img/version2/listen response.png">
+</details>
+
 
 ### Install the necessary dependencies to start the installation. Let's do this step by step through the terminal 🛠️
 ```bash
