@@ -4,12 +4,12 @@ Your fully customizable native AI assistant, powered by Whisper, llama3.1, Phi-3
 ---
 
 <details>
-  <summary>Version 2 🎉</summary>
-  <img src="app/static/img/version2/start.png">
-  <img src="app/static/img/version2/open voice.png">
-  <img src="app/static/img/version2/select model_sound_base-prompt.png">
-  <img src="app/static/img/version2/ask question.png">
-  <img src="app/static/img/version2/listen response.png">
+  <summary> <h2> Examples 🎉 </h2> </summary>
+    <img src="app/static/img/version2/start.png">
+    <img src="app/static/img/version2/open voice.png">
+    <img src="app/static/img/version2/select model_sound_base-prompt.png">
+    <img src="app/static/img/version2/ask question.png">
+    <img src="app/static/img/version2/listen response.png">
 </details>
 
 
