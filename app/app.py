@@ -18,13 +18,14 @@ def index():
 @app.route('/api/reset-prompt', methods=['POST'])
 def reset_prompt():
     llm_model.base_prompt = "I'd like you to answer my questions briefly!\n"
-    print("prompt reset complete!")
+    print("llm_model.base_prompt:", llm_model.base_prompt)
     return jsonify({"status": "success", "data": "success"})
 
 @app.route('/api/submit-prompt', methods=['POST'])
 def submit_prompt():
     data = request.json.get('prompt')
     llm_model.base_prompt += data + "\n"
+    print("llm_model.base_prompt:", llm_model.base_prompt)
     return jsonify({"status": "success", "data": data})
 
 @app.route('/api/submit-data', methods=['POST'])

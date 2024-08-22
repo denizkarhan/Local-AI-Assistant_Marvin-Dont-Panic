@@ -122,12 +122,19 @@ document.getElementById('submitBtn').addEventListener('click', function() {
     .catch(error => console.error('Error:', error));
 });
 
+document.getElementById('prompt').addEventListener('click', function() {
+  const newPrompt = document.getElementById('prompt');
+  newPrompt.value = " ";
+});
+
 document.getElementById('submitBtn2').addEventListener('click', function() {
-  const prompt = document.getElementById('prompt').value;
+  const newPrompt = document.getElementById('prompt');
 
   const data = {
-    prompt: prompt
+    prompt: newPrompt.value
   };
+
+  newPrompt.value = "the role assigned";
 
 fetch('/api/submit-prompt', {
     method: 'POST',
@@ -142,11 +149,14 @@ fetch('/api/submit-prompt', {
 });
 
 document.getElementById('submitBtn3').addEventListener('click', function() {
-  const prompt = document.getElementById('prompt').value;
+  const newPrompt = document.getElementById('prompt');
+  
   const data = {
-    prompt: prompt
+    prompt: newPrompt.value
   };
   
+  newPrompt.value = "the role reset";
+
   fetch('/api/reset-prompt', {
     method: 'POST',
     headers: {
